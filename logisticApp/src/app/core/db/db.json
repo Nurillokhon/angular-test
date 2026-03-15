@@ -1,0 +1,101 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ali Valiyev",
+      "phone": "998901234567",
+      "password": "123456",
+      "role": "sender",
+      "token": "token_sender_1"
+    },
+    {
+      "id": 2,
+      "name": "Bek Olimov",
+      "phone": "998907654321",
+      "password": "123456",
+      "role": "carrier",
+      "token": "token_carrier_2"
+    },
+    {
+      "id": 3,
+      "name": "Admin Moderator",
+      "phone": "998339721212",
+      "password": "admin123",
+      "role": "moderator",
+      "token": "token_moderator_3"
+    }
+  ],
+
+  "orders": [
+    {
+      "id": 1,
+      "from": "Tashkent",
+      "to": "Samarkand",
+      "weight": 1200,
+      "price": 1500000,
+      "status": "NEW",
+      "senderId": 1,
+      "createdAt": "2026-03-01"
+    },
+    {
+      "id": 2,
+      "from": "Bukhara",
+      "to": "Navoi",
+      "weight": 800,
+      "price": 900000,
+      "status": "MODERATION",
+      "senderId": 1,
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": 3,
+      "from": "Fergana",
+      "to": "Tashkent",
+      "weight": 500,
+      "price": 700000,
+      "status": "ACTIVE",
+      "senderId": 2,
+      "createdAt": "2026-03-03"
+    },
+    {
+      "id": 4,
+      "from": "Nukus",
+      "to": "Urgench",
+      "weight": 600,
+      "price": 850000,
+      "status": "IN_TRANSIT",
+      "senderId": 2,
+      "createdAt": "2026-03-04"
+    },
+    {
+      "id": 5,
+      "from": "Andijan",
+      "to": "Namangan",
+      "weight": 400,
+      "price": 600000,
+      "status": "DELIVERED",
+      "senderId": 1,
+      "createdAt": "2026-03-05"
+    },
+    {
+      "id": 6,
+      "from": "Samarkand",
+      "to": "Bukhara",
+      "weight": 900,
+      "price": 1100000,
+      "status": "CANCELLED",
+      "senderId": 1,
+      "createdAt": "2026-03-06"
+    },
+    {
+      "id": 7,
+      "from": "Tashkent",
+      "to": "Khiva",
+      "weight": 1300,
+      "price": 2000000,
+      "status": "REJECTED",
+      "senderId": 3,
+      "createdAt": "2026-03-07"
+    }
+  ]
+}
