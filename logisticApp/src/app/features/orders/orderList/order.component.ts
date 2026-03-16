@@ -29,10 +29,12 @@ export class OrderComponent implements OnInit {
         console.log('response keldi:', res);
         this.orders = res.data;
         this.loading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('API error:', err);
         this.loading = false;
+        this.cdr.detectChanges();
       },
     });
     console.log(this.loading);
