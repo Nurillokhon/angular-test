@@ -2,7 +2,11 @@
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-3xl font-semibold text-gray-800">Orders</h1>
 
-    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow">
+    <button
+      type="button"
+      (click)="openCreateModal()"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
+    >
       + Create Order
     </button>
   </div>
@@ -27,7 +31,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of orders" class="border-t hover:bg-gray-50 transition">
+        <tr
+          *ngFor="let order of orders"
+          class="border-t hover:bg-gray-50 transition cursor-pointer"
+          (click)="getOrderDetail(order.id)"
+        >
           <td class="p-4 font-medium">#{{ order.id }}</td>
 
           <td class="p-4">{{ order.from }} → {{ order.to }}</td>
@@ -43,9 +51,6 @@
                 'bg-blue-500': order.status == 'NEW',
                 'bg-yellow-500': order.status == 'MODERATION',
                 'bg-green-600': order.status == 'ACTIVE',
-                'bg-purple-500': order.status == 'IN_TRANSIT',
-                'bg-gray-500': order.status == 'DELIVERED',
-                'bg-red-500': order.status == 'CANCELLED',
               }"
             >
               {{ order.status }}
@@ -61,6 +66,18 @@
   </div>
 </div>
 
-<div *ngIf="orders.length === 0 && !loading">ma'lumot topilmadi</div>
+<div *ngIf="orders.length === 0 && !loading" class="p-8 bg-gray-50 min-h-screen">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-semibold text-gray-800">Orders</h1>
+    <button
+      type="button"
+      (click)="openCreateModal()"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
+    >
+      + Create Order
+    </button>
+  </div>
+  <p class="text-gray-500">ma'lumot topilmadi</p>
+</div>
 
 <div *ngIf="loading">Loading...</div>

@@ -12,7 +12,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # development uchun
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -20,7 +20,6 @@ app.add_middleware(
 
 security = HTTPBearer()
 
-# ---------------- USERS ----------------
 
 users = [
     {
@@ -49,7 +48,6 @@ users = [
     }
 ]
 
-# ---------------- ORDERS ----------------
 
 orders = [
     {
@@ -84,7 +82,6 @@ orders = [
     }
 ]
 
-# ---------------- AUTH ----------------
 
 def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     token = credentials.credentials
@@ -96,7 +93,6 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
     raise HTTPException(status_code=401, detail="Invalid token")
 
 
-# ---------------- LOGIN ----------------
 
 @app.post("/api/auth/login")
 def login(data: dict):
@@ -118,14 +114,12 @@ def login(data: dict):
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
 
-# ---------------- LOGOUT ----------------
 
 @app.post("/api/auth/logout")
 def logout(user = Depends(get_current_user)):
     return {"message": "Logged out"}
 
 
-# ---------------- GET ORDERS ----------------
 
 @app.get("/api/orders")
 def get_orders(
@@ -159,7 +153,6 @@ def get_orders(
     }
 
 
-# ---------------- ORDER DETAIL ----------------
 
 @app.get("/api/orders/{id}")
 def get_order(id: int, user = Depends(get_current_user)):
@@ -171,7 +164,6 @@ def get_order(id: int, user = Depends(get_current_user)):
     raise HTTPException(status_code=404, detail="Order not found")
 
 
-# ---------------- CREATE ORDER ----------------
 
 @app.post("/api/orders")
 def create_order(data: dict, user = Depends(get_current_user)):
@@ -194,7 +186,6 @@ def create_order(data: dict, user = Depends(get_current_user)):
     return order
 
 
-# ---------------- CHANGE STATUS ----------------
 
 @app.patch("/api/orders/{id}/status")
 def change_status(id: int, data: dict, user = Depends(get_current_user)):

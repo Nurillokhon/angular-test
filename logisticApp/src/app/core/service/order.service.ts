@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { OrdersResponse } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class OrdersService {
   constructor(private http: HttpClient) {}
 
   getOrders(page = 1, limit = 10) {
-    return this.http.get(`${this.api}/orders?page=${page}&limit=${limit}`);
+    return this.http.get<OrdersResponse>(`${this.api}/orders?page=${page}&limit=${limit}`);
   }
 
   getOrder(id: number) {

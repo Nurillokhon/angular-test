@@ -1,0 +1,94 @@
+<form [formGroup]="createOrderForm" (ngSubmit)="onSubmit()" class="space-y-4">
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">From</label>
+    <input
+      formControlName="from"
+      type="text"
+      placeholder="Tashkent"
+      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+    <p
+      *ngIf="createOrderForm.get('from')?.invalid && createOrderForm.get('from')?.touched"
+      class="text-red-500 text-sm mt-1"
+    >
+      Required
+    </p>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">To</label>
+    <input
+      formControlName="to"
+      type="text"
+      placeholder="Samarkand"
+      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+    <p
+      *ngIf="createOrderForm.get('to')?.invalid && createOrderForm.get('to')?.touched"
+      class="text-red-500 text-sm mt-1"
+    >
+      Required
+    </p>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+    <input
+      formControlName="weight"
+      type="number"
+      min="0"
+      placeholder="1200"
+      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+    <p
+      *ngIf="createOrderForm.get('weight')?.invalid && createOrderForm.get('weight')?.touched"
+      class="text-red-500 text-sm mt-1"
+    >
+      Required
+    </p>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Price (UZS)</label>
+    <input
+      formControlName="price"
+      type="number"
+      min="0"
+      placeholder="1500000"
+      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+    <p
+      *ngIf="createOrderForm.get('price')?.invalid && createOrderForm.get('price')?.touched"
+      class="text-red-500 text-sm mt-1"
+    >
+      Required
+    </p>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+    <select
+      formControlName="status"
+      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+      <option *ngFor="let s of statusOptions" [value]="s">{{ s }}</option>
+    </select>
+  </div>
+
+  <div class="flex justify-end gap-2 pt-2">
+    <button
+      type="button"
+      (click)="modalRef.close()"
+      class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      [disabled]="createOrderForm.invalid || submitting"
+      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {{ submitting ? 'Saving...' : 'Create Order' }}
+    </button>
+  </div>
+</form>

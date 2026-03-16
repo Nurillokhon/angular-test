@@ -1,0 +1,25 @@
+<div class="space-y-3">
+  <p><b>ID:</b> {{ order.id }}</p>
+
+  <p>
+    <b>Route:</b>
+    {{ order.from }} → {{ order.to }}
+  </p>
+
+  <p><b>Weight:</b> {{ order.weight }} kg</p>
+
+  <p><b>Price:</b> {{ order.price | number }} UZS</p>
+
+  <p>
+    <b>Status:</b>
+    <select
+      [value]="order.status"
+      (change)="onStatusChange($any($event.target).value)"
+      class="mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+      <option *ngFor="let s of statusOptions" [value]="s">{{ s }}</option>
+    </select>
+  </p>
+
+  <p><b>Date:</b> {{ order.createdAt }}</p>
+</div>
